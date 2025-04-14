@@ -1,19 +1,19 @@
 Hi!
-LetsSay name is "Rayan".
-LetsSay age is 25.
-LetsSay isStudent is true.
-Show "Hello " plus name plus " " plus age.
-When age IsGreaterThan 18
-Then
-  Show "You are an adult".
-Otherwise
-  Show "You are a minor".
-ThenStop.
-ForAll i in range:
-  Show "Iteration " plus i.
-StopNow.
-Until count IsAtLeast 5:
-  Show "Count: " plus count.
-  count is count plus 1.
+LetsSay counter is 1.
+LetsSay max is 10.
+LetsSay message is "Counting:".
+Show message.
+
+Until counter IsGreaterThan max:
+    Show counter.
+    counter is counter plus 1.
 NowStop.
+
+LetsSay isFinished is true.
+When isFinished IsEqualTo true
+Then
+    Show "Count complete!".
+Otherwise
+    Show "Still counting...".
+ThenStop.
 Bye!

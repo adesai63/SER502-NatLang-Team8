@@ -1,100 +1,53 @@
-% Program Structure
-program --> ['Hi!'], newline, statements, ['Bye!'], {Program = Statements}.
+% DCG Grammar for the language
+:- module(grammar, [program/3]).
 
-% Statements
-statements([Stmt|Rest]) --> statement(Stmt), newline, statements(Rest).
+% Grammar rules
+program(prog(Statements)) -->
+    [id('Hi')], [punct('!')], optional_newline,
+    statements(Statements),
+    [id('Bye')], [punct('!')].
+
+optional_newline --> [newline] | [].
+optional_newlines --> [newline], optional_newlines | [].
+
+statements([Statement|Rest]) -->
+    statement(Statement), optional_newlines, statements(Rest).
 statements([]) --> [].
 
-% Statement with dot termination
-statement --> statement_core, ['.'].
+statement(var_decl(ID, Value)) -->
+    [id('LetsSay')], [id(ID)], [id('is')], value(Value), [punct('.')].
+statement(var_decl(ID1, ID2)) -->
+    [id('LetsSay')], [id(ID1)], [id('isAlso')], [id(ID2)], [punct('.')].
+statement(assign(ID, Expr)) -->
+    [id(ID)], [id('is')], expression(Expr), [punct('.')].
+statement(output(Expr)) -->
+    [id('Show')], expression(Expr), [punct('.')].
+statement(if_stmt(Condition, ThenStmt, ElseStmt)) -->
+    [id('When')], condition(Condition), optional_newline,
+    [id('Then')], optional_newline, statements(ThenStmt), optional_newline,
+    [id('Otherwise')], optional_newline, statements(ElseStmt), optional_newline,
+    [id('ThenStop')], [punct('.')].
+statement(for_loop(Var, List, Body)) -->
+    [id('ForAll')], [id(Var)], [id('in')], [id(List)], [punct(':')], optional_newline,
+    statements(Body), optional_newline,
+    [id('StopNow')], [punct('.')].
+statement(until_loop(Condition, Body)) -->
+    [id('Until')], condition(Condition), [punct(':')], optional_newline,
+    statements(Body), optional_newline,
+    [id('NowStop')], [punct('.')].
+statement(ternary(Condition, ThenStmt, ElseStmt)) -->
+    [id('When')], condition(Condition), [id('Then')], 
+    statement(ThenStmt), [id('Otherwise')], 
+    statement(ElseStmt), [id('ThenStop')], [punct('.')].
 
-% Core statements
-statement_core --> var_declaration.
-statement_core --> assignment.
-statement_core --> output_stmt.
-statement_core --> if_stmt.
-statement_core --> for_loop.
-statement_core --> until_loop.
-statement_core --> ternary_stmt.
+expression(value(V)) --> value(V).
+expression(var(ID)) --> [id(ID)].
+expression(op(Op, E1, E2)) -->
+    expression(E1), [op(Op)], expression(E2).
 
-% Variable declaration
-var_declaration --> ['LetsSay'], identifier, ['is'], value.
-var_declaration --> ['LetsSay'], identifier, ['isAlso'], identifier.
+value(num(N)) --> [num(N)].
+value(str(S)) --> [str(S)].
+value(bool(B)) --> [bool(B)].
 
-% Assignment
-assignment --> identifier, ['is'], expression.
-
-% Expressions with no left recursion
-expression(Expr) --> term(T), expression_tail(T, Expr).
-expression_tail(Acc, Expr) -->
-    arithmetic_operator(Op), term(T),
-    { Expr1 =.. [Op, Acc, T] },
-    expression_tail(Expr1, Expr).
-expression_tail(Acc, Acc) --> [].
-
-term --> value.
-term --> identifier.
-
-% Value types
-value --> number.
-value --> string.
-value --> boolean.
-
-% Operators
-arithmetic_operator(plus) --> ['plus'].
-arithmetic_operator(minus) --> ['minus'].
-arithmetic_operator(times) --> ['times'].
-arithmetic_operator(dividedBy) --> ['dividedBy'].
-
-% Conditions
-condition --> expression(Left), comparison_operator(Op), expression(Right),
-              { Cond =.. [Op, Left, Right] }.
-
-comparison_operator(asWellAs) --> ['AsWellAs'].
-comparison_operator(eitherOr) --> ['EitherOr'].
-comparison_operator(isNot) --> ['IsNot'].
-comparison_operator(isEqualTo) --> ['IsEqualTo'].
-comparison_operator(isNotEqualTo) --> ['IsNotEqualTo'].
-comparison_operator(isGreaterThan) --> ['IsGreaterThan'].
-comparison_operator(isLessThan) --> ['IsLessThan'].
-comparison_operator(isAtLeast) --> ['IsAtLeast'].
-comparison_operator(isAtMost) --> ['IsAtMost'].
-
-% Ternary statement
-ternary_stmt --> ['When'], condition, ['Then'], statement, ['Otherwise'], statement, ['ThenStop'].
-
-% If statement
-if_stmt --> ['When'], condition, newline,
-            ['Then'], newline,
-            statement, newline,
-            ['Otherwise'], newline,
-            statement, newline,
-            ['ThenStop'].
-
-% For loop (Count from ... to ... as ...)
-for_loop --> ['Count', 'from'], number, ['to'], number, ['as'], identifier.
-
-% Until loop
-until_loop --> ['Until'], condition, [:], newline,
-               statement, newline,
-               ['NowStop'].
-
-% Output statement (multiple expressions)
-output_stmt --> ['Show'], expression_list.
-
-expression_list --> expression(_), expression_list_tail.
-expression_list_tail --> [',' ], expression(_), expression_list_tail.
-expression_list_tail --> [].
-
-% Basic elements
-identifier --> [X], { atom(X), atom_codes(X, Codes), identifier_check(Codes) }.
-number --> [X], { number(X) }.
-string --> [X], { string(X) }.
-boolean --> ['true'].
-boolean --> ['false'].
-newline --> [newline].
-
-% Identifier validation
-identifier_check([H|T]) :- code_type(H, alpha), identifier_rest(T).
-identifier_rest([]).
-identifier_rest([H|T]) :- (code_type(H, alnum); H = 95), identifier_rest(T).
+condition(cond(E1, Op, E2)) -->
+    expression(E1), [op(Op)], expression(E2).
