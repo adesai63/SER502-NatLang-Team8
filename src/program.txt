@@ -1,0 +1,19 @@
+Hi!
+LetsSay name is "Rayan".
+LetsSay age is 25.
+LetsSay isStudent is true.
+Show "Hello " plus name plus " " plus age.
+When age IsGreaterThan 18
+Then
+  Show "You are an adult".
+Otherwise
+  Show "You are a minor".
+ThenStop.
+ForAll i in range:
+  Show "Iteration " plus i.
+StopNow.
+Until count IsAtLeast 5:
+  Show "Count: " plus count.
+  count is count plus 1.
+NowStop.
+Bye!
