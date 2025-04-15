@@ -1,0 +1,1 @@
+['Hi!', '\n', 'LetsSay', 'x', 'is', '5', '.', '\n', 'Show', '"Hello"', '.', '\n', 'ThenStop', '\n', 'Bye!']
