@@ -51,3 +51,7 @@ Milestone 2 :
     - Wrote sample programs.
     - Verified sample programs with the grammar.
 
+Milestone 3 & 4 plans:
+
+All of us will work on giving meaning to the synatx rules that is added in parser, i.e. adding semantics rule and evaluating the parse tree.
+Each of us will divide part of the parser synatx rules and add the corresponding semantics for those to evaluate.
