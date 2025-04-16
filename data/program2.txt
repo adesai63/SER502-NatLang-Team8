@@ -1,0 +1,5 @@
+Hi!
+LetsSay counter is 1 .
+counter is counter plus 10 .
+Show counter .
+Bye!

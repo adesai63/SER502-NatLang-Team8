@@ -1,0 +1,6 @@
+Hi!
+LetsSay numbers is [1, 2, 3] .
+ForAll item in numbers :
+Show item .
+StopNow
+Bye!

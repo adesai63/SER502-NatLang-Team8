@@ -1,0 +1,5 @@
+Hi!
+LetsSay original is 42.
+LetsSay alias isAlso original.
+Show alias.
+Bye!

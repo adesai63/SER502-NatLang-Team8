@@ -1,0 +1,59 @@
+SER 502 Contribution - Team 08
+
+Members:
+- Mrunal Kapure
+- Thrupthi Hosahalli Manjunatha
+- Piyush Sharma
+- Ayush Desai
+
+
+Milestone 1 :
+
+1. Mrunal Kapure
+    - Exploring with git and other tools required for the project.
+    - Discussion on the scope of the project.
+    - Coming up with type and purpose of the language we want to create.
+
+2. Thrupthi Thosahalli Manjunatha
+    - Exploring with git and other tools required for the project.
+    - Discussion on the scope of the project.
+    - Coming up with type and purpose of the language we want to create.
+
+3. Piyush Sharma
+    - Exploring with git and other tools required for the project.
+    - Discussion on the scope of the project.
+    - Coming up with type and purpose of the language we want to create.
+
+4. Ayush Desai
+    - Exploring with git and other tools required for the project.
+    - Discussion on the scope of the project.
+    - Coming up with type and purpose of the language we want to create.
+      
+Milestone 2 :
+
+1. Mrunal Kapure
+    - Implementation of a tokenizer according to the grammar of the project.
+    - Implemented DCG.
+    - Verified sample programs with the grammar.
+
+2. Thrupthi Thosahalli Manjunatha
+    - Discussed and implemented grammar in BNF form.
+    - Testing the sample codes with the tokenizer.
+    - Implemented DCG.
+
+3. Piyush Sharma
+    - Modified tokenizer and Testing the sample codes with the tokenizer.
+    - Wrote sample programs.
+    - Verified sample programs with the grammar.
+
+4. Ayush Desai
+    - Modified tokenizer and Tested the sample codes with the tokenizer.
+    - Wrote sample programs.
+    - Verified sample programs with the grammar.
+    - Created the shell script to run the programs in flow
+
+
+Milestone 3 & 4 plans:
+
+All of us will work on giving meaning to the synatx rules that is added in parser, i.e. adding semantics rule and evaluating the parse tree.
+Each of us will divide part of the parser synatx rules and add the corresponding semantics for those to evaluate.
