@@ -2,7 +2,7 @@
 
 ## NatLang
 
-**NatLang** is a conversational programming language inspired by natural English. Programs begin with **"Hey"** and end with **"Bye"**, making coding feel like a dialogue. It's designed for clarity, readability, and ease of learning, especially for beginners.
+**NatLang** is a conversational programming language inspired by natural English. Programs begin with **"Hi"** and end with **"Bye"**, making coding feel like a dialogue. It's designed for clarity, readability, and ease of learning, especially for beginners.
 
 The goal of NatLang is to bridge the gap between human language and programming syntax, allowing users to write code in a way that feels natural and intuitive.
 

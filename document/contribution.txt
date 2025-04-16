@@ -1,0 +1,53 @@
+SER 502 Contribution - Team 08
+
+Members:
+- Mrunal Kapure
+- Thrupthi Hosahalli Manjunatha
+- Piyush Sharma
+- Ayush Desai
+
+
+Milestone 1 :
+
+1. Mrunal
+    - Exploring with git and other tools required for the project.
+    - Discussion on the scope of the project.
+    - Coming up with type and purpose of the language we want to create.
+
+2. Thrupthi
+    - Exploring with git and other tools required for the project.
+    - Discussion on the scope of the project.
+    - Coming up with type and purpose of the language we want to create.
+
+3. Pyush
+    - Exploring with git and other tools required for the project.
+    - Discussion on the scope of the project.
+    - Coming up with type and purpose of the language we want to create.
+
+4. Ayush
+    - Exploring with git and other tools required for the project.
+    - Discussion on the scope of the project.
+    - Coming up with type and purpose of the language we want to create.
+      
+Milestone 2 :
+
+1. Mrunal
+    - Implementation of a tokenizer according to the grammar of the project.
+    - Implemented DCG.
+    - Verified sample programs with the grammar.
+
+2. Thrupthi
+    - Discussed and implemented grammar in BNF form.
+    - Testing the sample codes with the tokenizer.
+    - Implemented DCG.
+
+3. Pyush
+    - Modified tokenizer and Testing the sample codes with the tokenizer.
+    - Wrote sample programs.
+    - Verified sample programs with the grammar.
+
+4. Ayush
+    - Modified tokenizer and Tested the sample codes with the tokenizer.
+    - Wrote sample programs.
+    - Verified sample programs with the grammar.
+
