@@ -1,1 +1,0 @@
-['Hi!', '\n', 'LetsSay', max, 'is', 10, '.', '\n', 'LetsSay', sum, 'is', 0, '.', '\n', 'LetsSay', i, 'is', 1, '.', '\n', 'Until', i, 'IsGreaterThan', max, ':', '\n', sum, 'is', sum, 'plus', i, '.', '\n', i, 'is', i, 'plus', 1, '.', '\n', 'NowStop', '\n', 'Show', '"The sum is: "', '.', '\n', 'Show', sum, '.', '\n', 'Bye!', '\n'].
