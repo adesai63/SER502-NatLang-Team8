@@ -17,7 +17,31 @@ With its friendly structure and human-like keywords, NatLang encourages logical 
 - Early exposure to computational thinking
 
 ---
+##  🏃 Run Instructions
+### For **macOS / Linux / Windows using WSL**:
 
+1. **Navigate to the project source folder**:
+   ```bash
+   cd SER502-NatLang-Team8/src
+   ```
+2. **Make the runner script executable (only needed once)**:
+    ``` bash
+    chmod +x runner.sh
+    ```
+3. **Run the script with your .txt program file (from data/)**:
+    ``` bash
+    ./runner.sh ../data/ProgramFileName.txt
+    ```
+
+### For **Windows using Git Bash**:
+1. **Navigate to the project source folder**:
+   ```bash
+   cd SER502-NatLang-Team8/src
+   ```
+2. **Run the script with your .txt program file (from data/)**:
+    ``` bash
+    ./runner.sh ../data/ProgramFileName.txt
+    ```
 ## 🧩 Components
 
 ### 1. Lexical Analyzer
@@ -47,5 +71,3 @@ A **Python interpreter** processes the parse tree:
 > This is subject to change as the project evolves.
 
 ---
-
-

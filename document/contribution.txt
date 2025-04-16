@@ -38,6 +38,7 @@ Milestone 2 :
 
 2. Thrupthi Thosahalli Manjunatha
     - Discussed and implemented grammar in BNF form.
+    - Added doccument related to design and grammar for the language.
     - Testing the sample codes with the tokenizer.
     - Implemented DCG.
 
@@ -50,7 +51,8 @@ Milestone 2 :
     - Modified tokenizer and Tested the sample codes with the tokenizer.
     - Wrote sample programs.
     - Verified sample programs with the grammar.
-    - Created the shell script to run the programs in flow
+    - Created the shell script to run the programs in flow.
+    - Updated the documentation to reflect run instructions. 
 
 
 Milestone 3 & 4 plans:
