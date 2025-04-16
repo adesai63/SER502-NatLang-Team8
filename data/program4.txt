@@ -1,5 +1,5 @@
 Hi!
-LetsSay numbers is [1, 2, 3] .
+LetsSay numbers is 1 .
 ForAll item in numbers :
 Show item .
 StopNow
