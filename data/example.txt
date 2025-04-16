@@ -1,5 +1,0 @@
-Hi!
-LetsSay x is 5.
-Show "Hello".
-ThenStop
-Bye!
