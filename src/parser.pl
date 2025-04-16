@@ -1,4 +1,3 @@
-:- use_rendering(svgtree).
 :- use_module(library(dcg/basics)).
 
 
