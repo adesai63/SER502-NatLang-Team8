@@ -45,29 +45,27 @@ TOKEN_SPEC = [
 def tokenize(code):
     tokens = []
     token_regex = '|'.join(f'(?P<{pair[0]}>{pair[1]})' for pair in TOKEN_SPEC)
-    
+
     for mo in re.finditer(token_regex, code):
         kind = mo.lastgroup
         value = mo.group()
-        
+
         if kind == 'NEWLINE':
             tokens.append('\n')
         elif kind == 'SKIP':
             continue
         elif kind == 'MISMATCH':
             raise RuntimeError(f'Unexpected character: {value}')
-        elif kind == 'STRING':
-            tokens.append(value)
         else:
             tokens.append(value)
-    
+
     return tokens
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python tokenizer.py <InputFileName>")
         sys.exit(1)
-    
+
     input_file = sys.argv[1]
 
     with open(input_file, 'r') as f:
@@ -81,10 +79,26 @@ if __name__ == "__main__":
 
     output_dir = os.path.join("tokens")
     os.makedirs(output_dir, exist_ok=True)
-
     output_path = os.path.join(output_dir, output_file_name)
 
+    keyword_literals = {pattern for name, pattern in TOKEN_SPEC
+                        if name not in ['IDENTIFIER', 'NUMBER', 'STRING', 'SKIP', 'MISMATCH', 'NEWLINE']}
+
     with open(output_path, 'w') as f:
-        f.write(str(tokens))
-    
+        f.write('[')
+        for i, token in enumerate(tokens):
+            if token == '\n':
+                formatted = "'\\n'"
+            elif re.fullmatch(r'[0-9]+(?:\.[0-9]+)?', token):
+                formatted = token
+            elif re.fullmatch(r'[a-zA-Z][a-zA-Z0-9]*', token) and token not in keyword_literals:
+                formatted = token
+            else:
+                formatted = f"'{token}'"
+
+            f.write(formatted)
+            if i != len(tokens) - 1:
+                f.write(', ')
+        f.write(']')
+
     print("Tokens written to:", output_path)
