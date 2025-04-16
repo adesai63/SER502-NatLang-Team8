@@ -99,6 +99,6 @@ if __name__ == "__main__":
             f.write(formatted)
             if i != len(tokens) - 1:
                 f.write(', ')
-        f.write(']')
+        f.write('].\n')
 
     print("Tokens written to:", output_path)
