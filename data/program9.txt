@@ -1,0 +1,4 @@
+Hi!
+LetsSay x is 10.
+When x IsGreaterThan 5 Then Show "big". Otherwise Show "small". ThenStop.
+Bye!

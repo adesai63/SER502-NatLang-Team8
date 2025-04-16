@@ -1,0 +1,54 @@
+Hi!
+LetsSay a is 5.
+LetsSay b is 10.
+
+When a IsEqualTo a
+Then
+Show "Equal test passed".
+Otherwise
+Show "Equal test failed".
+ThenStop
+
+When a IsNotEqualTo b
+Then
+Show "Not equal test passed".
+Otherwise
+Show "Not equal test failed".
+ThenStop
+
+When b IsGreaterThan a
+Then
+Show "Greater than test passed".
+Otherwise
+Show "Greater than test failed".
+ThenStop
+
+When a IsLessThan b
+Then
+Show "Less than test passed".
+Otherwise
+Show "Less than test failed".
+ThenStop
+
+When a IsAtLeast a
+Then
+Show "At least test passed".
+Otherwise
+Show "At least test failed".
+ThenStop
+
+When b IsAtMost b
+Then
+Show "At most test passed".
+Otherwise
+Show "At most test failed".
+ThenStop
+
+When a IsNot b
+Then
+Show "Is not test passed".
+Otherwise
+Show "Is not test failed".
+ThenStop
+
+Bye!
