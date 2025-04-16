@@ -1,6 +1,5 @@
 :- use_module(library(dcg/basics)).
 
-
 program(program(hi, Statements, bye)) --> 
     ['Hi!'], newlines, 
     statements(Statements), 
@@ -58,6 +57,7 @@ comparison(compare(Op, Left, Right)) -->
     additive(Left), comparison_op(Op), additive(Right).
 comparison(Expr) --> additive(Expr).
 
+
 additive(operator('plus', Left, Right)) --> 
     multiplicative(Left), ['plus'], additive(Right).
 additive(operator('minus', Left, Right)) --> 
@@ -80,6 +80,7 @@ primary(Expr) --> ['('], expression(Expr), [')'].
 % Conditions
 condition(condition(Left, Op, Right)) --> 
     expression(Left), comparison_op(Op), expression(Right).
+
 
 % Values
 value(number(N)) --> [N], {number(N)}.
