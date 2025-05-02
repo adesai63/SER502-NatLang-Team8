@@ -1,9 +1,6 @@
 Hi!
-LetsSay x is 10 .
-When x IsGreaterThan 5
-Then
-Show "x is large" .
-Otherwise
-Show "x is small" .
-ThenStop
+LetsSay x is 5 .
+LetsSay y is 10 .
+Show x plus y .
+Show x times y dividedBy 2 .
 Bye!

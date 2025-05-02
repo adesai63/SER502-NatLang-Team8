@@ -1,4 +1,5 @@
 Hi!
-LetsSay x is 10.
-When x IsGreaterThan 5 Then Show "big". Otherwise Show "small". ThenStop.
+LetsSay counter is 1 .
+counter is counter plus 10 .
+Show counter .
 Bye!

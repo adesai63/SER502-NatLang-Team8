@@ -1,6 +1,6 @@
 Hi!
-LetsSay numbers is 1 .
-ForAll item in numbers :
-Show item .
-StopNow
+LetsSay a is true .
+LetsSay b is false .
+Show a AsWellAs b .
+Show a EitherOr b .
 Bye!

@@ -1,3 +1,4 @@
+:- use_module(library(assoc)).
 :- use_module(library(dcg/basics)).
 
 program(program(hi, Statements, bye)) --> 
@@ -5,7 +6,6 @@ program(program(hi, Statements, bye)) -->
     statements(Statements), 
     ['Bye!'], newlines.
 
-% Statements
 statements([S|Ss]) --> statement(S), newlines, statements(Ss).
 statements([]) --> [].
 
@@ -42,7 +42,6 @@ statement(ternary(Cond, Then, Else)) -->
     ['When'], condition(Cond), ['Then'], statement(Then),
     ['Otherwise'], statement(Else), ['ThenStop'], ['.'].
 
-% Expressions with full operator precedence
 expression(Expr) --> logical_or(Expr).
 
 logical_or(or(Left, Right)) --> 
@@ -57,7 +56,6 @@ comparison(compare(Op, Left, Right)) -->
     additive(Left), comparison_op(Op), additive(Right).
 comparison(Expr) --> additive(Expr).
 
-
 additive(operator('plus', Left, Right)) --> 
     multiplicative(Left), ['plus'], additive(Right).
 additive(operator('minus', Left, Right)) --> 
@@ -71,25 +69,20 @@ multiplicative(operator('dividedBy', Left, Right)) -->
 multiplicative(Expr) --> primary(Expr).
 
 primary(number(N)) --> [N], {number(N)}.
-primary(string(S)) --> [S], {string(S)}.
 primary(boolean(true)) --> ['true'].
 primary(boolean(false)) --> ['false'].
 primary(identifier(Id)) --> identifier(Id).
+primary(string(S)) --> [Raw], {atom(Raw), atom_chars(Raw, ['"'|Rest]), append(Chars, ['"'], Rest), atom_chars(S, Chars)}.
 primary(Expr) --> ['('], expression(Expr), [')'].
 
-% Conditions
 condition(condition(Left, Op, Right)) --> 
     expression(Left), comparison_op(Op), expression(Right).
 
-
-% Values
 value(number(N)) --> [N], {number(N)}.
-value(string(S)) --> [S], {string(S)}.
+value(string(S)) --> [Raw], {atom(Raw), atom_chars(Raw, ['"'|Rest]), append(Chars, ['"'], Rest), atom_chars(S, Chars)}.
 value(boolean(true)) --> ['true'].
 value(boolean(false)) --> ['false'].
-value(list(L)) --> [L], {is_list(L)}.
 
-% Terminals
 newlines --> ['\n'], newlines.
 newlines --> [].
 
@@ -103,7 +96,6 @@ comparison_op('IsAtLeast') --> ['IsAtLeast'].
 comparison_op('IsAtMost') --> ['IsAtMost'].
 comparison_op('IsNot') --> ['IsNot'].
 
-% Reserved words
 reserved_word('Hi!').
 reserved_word('Bye!').
 reserved_word('LetsSay').
@@ -128,6 +120,5 @@ reserved_word('dividedBy').
 reserved_word('AsWellAs').
 reserved_word('EitherOr').
 
-% Helper predicates
 parse_program(Tokens, ParseTree) :-
     phrase(program(ParseTree), Tokens).

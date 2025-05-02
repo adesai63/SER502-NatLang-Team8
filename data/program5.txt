@@ -1,7 +1,5 @@
 Hi!
-LetsSay counter is 0 .
-Until counter IsEqualTo 5 :
-counter is counter plus 1 .
-Show counter .
-NowStop
+LetsSay original is 42 .
+LetsSay alias isAlso original .
+Show alias .
 Bye!
