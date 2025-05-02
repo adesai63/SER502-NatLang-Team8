@@ -64,10 +64,5 @@ A **Python interpreter** processes the parse tree:
 - Manages memory and variables
 - Simulates execution of the program
 
----
-
-> ⚠️ **Note:**  
-> We have selected the tech stack as per our current understanding of the project.  
-> This is subject to change as the project evolves.
-
----
+### 4. Evaluation Engine
+Once the parse tree is built, a **Prolog-based evaluator** walks the tree, maintaining an **environment** (an associative map) that binds each identifier to its current value.

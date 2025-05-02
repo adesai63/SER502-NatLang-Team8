@@ -1,9 +1,7 @@
 Hi!
-LetsSay x is 10 .
-When x IsGreaterThan 5
-Then
-Show "x is large" .
-Otherwise
-Show "x is small" .
-ThenStop
+LetsSay counter is 1 .
+Until counter IsEqualTo 5 :
+Show counter .
+counter is counter plus 1 .
+NowStop
 Bye!

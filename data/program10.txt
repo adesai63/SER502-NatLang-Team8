@@ -1,11 +1,3 @@
 Hi!
-LetsSay max is 10.
-LetsSay sum is 0.
-LetsSay i is 1.
-Until i IsGreaterThan max:
-sum is sum plus i.
-i is i plus 1.
-NowStop
-Show "The sum is: ".
-Show sum.
+Show 2 plus 3 times 4 dividedBy 1 .
 Bye!
