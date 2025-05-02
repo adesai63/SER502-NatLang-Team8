@@ -100,7 +100,6 @@ def main():
                 f.write(', ')
         f.write('].\n')
 
-    print("Tokens written to:", out_path)
 
 if __name__ == "__main__":
     main()
