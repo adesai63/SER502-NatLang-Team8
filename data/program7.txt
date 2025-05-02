@@ -1,12 +1,10 @@
 Hi!
 LetsSay a is true.
 LetsSay b is false.
-
 When a AsWellAs b IsNot true
 Then
 Show "Logic works!".
 Otherwise
 Show "Unexpected logic".
 ThenStop
-
 Bye!

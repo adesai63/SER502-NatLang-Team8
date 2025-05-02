@@ -3,102 +3,103 @@ import sys
 import os
 
 TOKEN_SPEC = [
-    ('HI', r'Hi!'),
-    ('BYE', r'Bye!'),
-    ('NEWLINE', r'\n'),
-    ('DOT', r'\.'),
-    ('COLON', r':'),
-    ('LETS_SAY', r'LetsSay'),
-    ('IS', r'is'),
-    ('IS_ALSO', r'isAlso'),
-    ('SHOW', r'Show'),
-    ('WHEN', r'When'),
-    ('THEN_STOP', r'ThenStop'),
-    ('THEN', r'Then'),
-    ('OTHERWISE', r'Otherwise'),
-    ('FOR_ALL', r'ForAll'),
-    ('IN', r'in'),
-    ('STOP_NOW', r'StopNow'),
-    ('UNTIL', r'Until'),
-    ('NOW_STOP', r'NowStop'),
-    ('PLUS', r'plus'),
-    ('MINUS', r'minus'),
-    ('TIMES', r'times'),
-    ('DIVIDED_BY', r'dividedBy'),
-    ('AS_WELL_AS', r'AsWellAs'),
-    ('EITHER_OR', r'EitherOr'),
-    ('IS_NOT', r'IsNot'),
-    ('IS_EQUAL_TO', r'IsEqualTo'),
-    ('IS_NOT_EQUAL_TO', r'IsNotEqualTo'),
-    ('IS_GREATER_THAN', r'IsGreaterThan'),
-    ('IS_LESS_THAN', r'IsLessThan'),
-    ('IS_AT_LEAST', r'IsAtLeast'),
-    ('IS_AT_MOST', r'IsAtMost'),
-    ('BOOLEAN', r'true|false'),
-    ('IDENTIFIER', r'[a-zA-Z][a-zA-Z0-9]*'),
-    ('NUMBER', r'[0-9]+(?:\.[0-9]+)?'),
-    ('STRING', r'"[^"\\]*(?:\\.[^"\\]*)*"'),
-    ('SKIP', r'[ \t]+'),
-    ('MISMATCH', r'.'),
+    ('HI',               r'Hi!'),
+    ('BYE',              r'Bye!'),
+    ('NEWLINE',          r'\n'),
+    ('DOT',              r'\.'),
+    ('COLON',            r':'),
+    ('LPAR',             r'\('),
+    ('RPAR',             r'\)'),
+    ('LBRACKET',         r'\['),
+    ('RBRACKET',         r'\]'),
+    ('COMMA',            r','),
+
+    ('EITHER_OR',        r'EitherOr'),
+    ('AS_WELL_AS',       r'AsWellAs'),
+    ('DIVIDED_BY',       r'dividedBy'),
+    ('TIMES',            r'times'),
+    ('PLUS',             r'plus'),
+    ('MINUS',            r'minus'),
+    ('IS_NOT_EQUAL_TO',  r'IsNotEqualTo'),
+    ('IS_EQUAL_TO',      r'IsEqualTo'),
+    ('IS_GREATER_THAN',  r'IsGreaterThan'),
+    ('IS_LESS_THAN',     r'IsLessThan'),
+    ('IS_AT_LEAST',      r'IsAtLeast'),
+    ('IS_AT_MOST',       r'IsAtMost'),
+    ('IS_NOT',           r'IsNot'),
+    ('IS_ALSO',          r'isAlso'),
+    ('IS',               r'is'),
+    ('LETS_SAY',         r'LetsSay'),
+    ('SHOW',             r'Show'),
+    ('WHEN',             r'When'),
+    ('THEN_STOP',        r'ThenStop'),
+    ('THEN',             r'Then'),
+    ('OTHERWISE',        r'Otherwise'),
+    ('FOR_ALL',          r'ForAll'),
+    ('IN',               r'in'),
+    ('STOP_NOW',         r'StopNow'),
+    ('UNTIL',            r'Until'),
+    ('NOW_STOP',         r'NowStop'),
+    ('BOOLEAN',          r'(?:true|false)'),
+
+    ('IDENTIFIER',       r'[a-zA-Z][a-zA-Z0-9]*'),
+    ('NUMBER',           r'[0-9]+(?:\.[0-9]+)?'),
+    ('STRING',           r'"[^"\\]*(?:\\.[^"\\]*)*"'),
+
+    ('SKIP',             r'[ \t]+'),
+    ('MISMATCH',         r'.'),
 ]
 
 def tokenize(code):
     tokens = []
-    token_regex = '|'.join(f'(?P<{pair[0]}>{pair[1]})' for pair in TOKEN_SPEC)
-
-    for mo in re.finditer(token_regex, code):
-        kind = mo.lastgroup
-        value = mo.group()
-
+    pattern = '|'.join(f'(?P<{name}>{pat})' for name, pat in TOKEN_SPEC)
+    for mo in re.finditer(pattern, code):
+        kind, val = mo.lastgroup, mo.group()
         if kind == 'NEWLINE':
             tokens.append('\n')
         elif kind == 'SKIP':
             continue
         elif kind == 'MISMATCH':
-            raise RuntimeError(f'Unexpected character: {value}')
+            raise RuntimeError(f'Unexpected character: {val}')
         else:
-            tokens.append(value)
-
+            tokens.append(val)
     return tokens
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) != 2:
         print("Usage: python tokenizer.py <InputFileName>")
         sys.exit(1)
 
-    input_file = sys.argv[1]
+    src = sys.argv[1]
+    code = open(src).read()
+    toks = tokenize(code)
 
-    with open(input_file, 'r') as f:
-        inputCode = f.read()
+    base = os.path.splitext(os.path.basename(src))[0]
+    out_dir = "tokens"
+    os.makedirs(out_dir, exist_ok=True)
+    out_path = os.path.join(out_dir, f"{base}.txt")
 
-    tokens = tokenize(inputCode)
+    literal_pats = {
+        pat for nm, pat in TOKEN_SPEC
+        if nm not in {'IDENTIFIER','NUMBER','STRING','SKIP','NEWLINE','MISMATCH'}
+    }
 
-    base_name = os.path.basename(input_file)
-    filename_without_ext, _ = os.path.splitext(base_name)
-    output_file_name = filename_without_ext + ".txt"
-
-    output_dir = os.path.join("tokens")
-    os.makedirs(output_dir, exist_ok=True)
-    output_path = os.path.join(output_dir, output_file_name)
-
-    keyword_literals = {pattern for name, pattern in TOKEN_SPEC
-                        if name not in ['IDENTIFIER', 'NUMBER', 'STRING', 'SKIP', 'MISMATCH', 'NEWLINE']}
-
-    with open(output_path, 'w') as f:
+    with open(out_path, 'w') as f:
         f.write('[')
-        for i, token in enumerate(tokens):
-            if token == '\n':
-                formatted = "'\\n'"
-            elif re.fullmatch(r'[0-9]+(?:\.[0-9]+)?', token):
-                formatted = token
-            elif re.fullmatch(r'[a-zA-Z][a-zA-Z0-9]*', token) and token not in keyword_literals:
-                formatted = token
+        for i, t in enumerate(toks):
+            if t == '\n':
+                s = "'\\n'"
+            elif re.fullmatch(r'[0-9]+(?:\.[0-9]+)?', t):
+                s = t
+            elif re.fullmatch(r'[a-zA-Z][a-zA-Z0-9]*', t) and t not in literal_pats:
+                s = t
             else:
-                formatted = f"'{token}'"
-
-            f.write(formatted)
-            if i != len(tokens) - 1:
+                s = f"'{t}'"
+            f.write(s)
+            if i < len(toks) - 1:
                 f.write(', ')
         f.write('].\n')
 
-    print("Tokens written to:", output_path)
+
+if __name__ == "__main__":
+    main()

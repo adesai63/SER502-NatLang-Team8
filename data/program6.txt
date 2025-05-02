@@ -1,3 +1,5 @@
 Hi!
-Show 2 plus 3 times 4 dividedBy 1 .
+LetsSay x is 10 .
+LetsSay y is 20 .
+Show ( x plus y ) times 2 dividedBy 3 .
 Bye!
