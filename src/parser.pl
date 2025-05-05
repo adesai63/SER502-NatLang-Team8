@@ -82,6 +82,7 @@ value(number(N)) --> [N], {number(N)}.
 value(string(S)) --> [Raw], {atom(Raw), atom_chars(Raw, ['"'|Rest]), append(Chars, ['"'], Rest), atom_chars(S, Chars)}.
 value(boolean(true)) --> ['true'].
 value(boolean(false)) --> ['false'].
+value(ternary(Cond, ThenVal, ElseVal)) --> ['When'], condition(Cond), ['Then'], value(ThenVal), ['Otherwise'], value(ElseVal), ['ThenStop'].
 
 newlines --> ['\n'], newlines.
 newlines --> [].
