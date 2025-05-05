@@ -15,6 +15,10 @@ With its friendly structure and human-like keywords, NatLang encourages logical 
 - Educational purposes  
 - Workshops  
 - Early exposure to computational thinking
+---
+## 📷 YouTube Demo
+
+[Link](https://youtu.be/2C1LOYri600)
 
 ---
 ##  🏃 Run Instructions
