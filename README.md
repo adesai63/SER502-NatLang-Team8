@@ -15,6 +15,10 @@ With its friendly structure and human-like keywords, NatLang encourages logical 
 - Educational purposes  
 - Workshops  
 - Early exposure to computational thinking
+---
+## 📷 YouTube Demo
+
+[Link](https://youtu.be/2C1LOYri600)
 
 ---
 ##  🏃 Run Instructions
@@ -66,3 +70,9 @@ A **Python interpreter** processes the parse tree:
 
 ### 4. Evaluation Engine
 Once the parse tree is built, a **Prolog-based evaluator** walks the tree, maintaining an **environment** (an associative map) that binds each identifier to its current value.
+
+### Contributors
+1. Thrupthi Hosahalli Manjunatha
+2. ⁠Mrunal Kapure
+3. ⁠Ayush Desai
+4. ⁠Piyush Sharma

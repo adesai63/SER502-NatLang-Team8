@@ -127,6 +127,13 @@ evaluate_expression(Expr, Env, Val) :-
     Expr =.. [_, Sub],
     evaluate_expression(Sub, Env, Val).
 
+evaluate_expression(ternary(Cond, ThenExpr, ElseExpr), Env, V) :-
+    evaluate_condition(Cond, Env, Bool),
+    ( Bool == true
+    -> evaluate_expression(ThenExpr, Env, V)
+    ;  evaluate_expression(ElseExpr, Env, V)
+    ).
+
 %------------------------------------------------------------------------
 % Conditions & comparisons
 %------------------------------------------------------------------------
@@ -159,6 +166,7 @@ evaluate_value(boolean(true),  _, true).
 evaluate_value(boolean(false), _, false).
 evaluate_value(list(L), _, L) :- is_list(L).
 evaluate_value(identifier(Id), Env, V) :- get_value(Env, Id, V).
+evaluate_value(ternary(Cond, ThenVal, ElseVal), Env, V) :- evaluate_condition(Cond, Env, Bool),( Bool == true  -> evaluate_value(ThenVal, Env, V) ;  evaluate_value(ElseVal, Env, V)).
 
 empty_env(Env) :- empty_assoc(Env).
 
@@ -169,3 +177,4 @@ get_value(Env, Id, Value) :-
 set_value(Env, Id, Value, NewEnv) :-
     atom(Id),
     put_assoc(Id, Env, Value, NewEnv).
+    

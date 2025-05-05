@@ -1,0 +1,5 @@
+Hi!
+LetsSay x is 10.
+LetsSay msg is When 1 plus x IsEqualTo 11 Then "Match" Otherwise "No Match" ThenStop.
+Show msg.
+Bye!
