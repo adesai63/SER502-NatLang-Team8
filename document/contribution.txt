@@ -54,7 +54,7 @@ Milestone 2 :
     - Created the shell script to run the programs in flow.
     - Updated the documentation to reflect run instructions. 
 
-Milestone 3 & 4 :
+Milestone 3 :
 
 Goal : All of us planned to work on giving meaning to the syntax rules that is added in parser, i.e. adding semantics rule and evaluating the parse tree.
 Each of us divided part of the parser syntax rules and add the corresponding semantics for those to evaluate.
@@ -74,3 +74,17 @@ Each of us divided part of the parser syntax rules and add the corresponding sem
 4.⁠ ⁠Ayush Desai
     - Worked on giving meaning to the syntax rules that is added in parser.
     - Verified sample programs with evaluator.
+
+Milestone 4 :
+
+1.⁠ ⁠Mrunal Kapure
+    - Worked on presentation and documentation.
+
+2.⁠ ⁠Thrupthi Thosahalli Manjunatha
+    - Worked on presentation and documentation.
+
+3.⁠ ⁠Piyush Sharma
+    - Worked on presentation and documentation.
+
+4.⁠ ⁠Ayush Desai
+    - Worked on presentation and documentation.
